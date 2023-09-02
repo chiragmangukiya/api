@@ -7,6 +7,9 @@ import { useParams } from 'react-router-dom';
 function Product() {
 
      const [product,setproduct]=useState([]);
+     const [smallimg,setsmallimg]=useState([]);
+     const [bigimg,setbigimg]=useState();
+     const [thumb,setthumb]=useState(false)
      let params = useParams();
 
      useEffect(()=>{
@@ -14,12 +17,14 @@ function Product() {
           .then((res)=>{
                console.log(res.data);
                setproduct(res.data);
+               setsmallimg(res.data.images);
           })
           .catch((err)=>{
                console.log(err);
           })
 
      },[])
+
 
   return (
     <>
@@ -28,7 +33,16 @@ function Product() {
                <Row>
                     <Col lg={5}>
                          <div className='img_grid'>
-                              <img src={product.thumbnail} alt="" className='w-100' />
+                              <img src={(thumb) ? bigimg : product.thumbnail} alt="" className='w-100' />
+                              <div className='small_img'>
+                                   {
+                                        smallimg.map((item)=>{
+                                             return(
+                                                  <div><img src={item} onClick={(e)=>{setbigimg(e.target.src); setthumb(true)}}/></div>
+                                             )
+                                        })
+                                   }
+                              </div>
                          </div>
                     </Col>
                     <Col lg={7}>

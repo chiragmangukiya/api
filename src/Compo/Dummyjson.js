@@ -4,12 +4,14 @@ import Sidebar from './Sidebar';
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 function Dummyjson() {
      
      const [category,setcategory]=useState([]);
      const [allproduct,setallproduct]=useState([]);
-     let [cateName,setcateName]=useState('');
+     let [searchPro,setsearchPro]=useState('');
 
      useEffect(()=>{
           axios.get(`https://dummyjson.com/products/categories`)
@@ -45,6 +47,16 @@ function Dummyjson() {
 
      }
 
+     const search = () => {
+          axios.get(`https://dummyjson.com/products/search?q=${searchPro}`)
+          .then((res)=>{
+               setallproduct(res.data.products);
+          })
+          .catch((err)=>{
+               console.log(err);
+          })
+     }
+
     return (
     <>
      <Container fluid className='p-5'>
@@ -66,7 +78,14 @@ function Dummyjson() {
                <Col xs={9} className='offset-3'>
                     <Row className='g-3'>
                          <h3 className="section_title">featured collection</h3>
-                              {/* <h1>{cateName}</h1> */}
+                         
+                         <InputGroup className="mb-3">
+                              <Form.Control
+                                   placeholder="Search Product"
+                                   onChange={(e)=>{setsearchPro(e.target.value); search();}}
+                              />
+                         </InputGroup>
+
                          {
                               allproduct.map((item)=>{
                                    return(
