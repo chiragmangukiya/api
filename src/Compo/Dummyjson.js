@@ -1,6 +1,4 @@
-import { Col, Container, Row, Card, Button } from 'react-bootstrap'
-import Allproduct from './Allproduct';
-import Sidebar from './Sidebar';
+import { Col, Container, Row, Card } from 'react-bootstrap'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link } from "react-router-dom";

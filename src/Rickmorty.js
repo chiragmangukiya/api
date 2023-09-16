@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Row, Card, ListGroup } from 'react-bootstrap';
+import { Link } from "react-router-dom";
+
 
 function Rickmorty() {
 
@@ -24,7 +26,7 @@ function Rickmorty() {
               {
                 data.map((detail)=>{
                   return(
-                    <Col lg={4}>
+                    <Col lg={4} >
                       <Card>
                         <Card.Img variant="top" src={detail.image} />
                         <Card.Body>
@@ -32,9 +34,11 @@ function Rickmorty() {
                         </Card.Body>
                         <ListGroup className="list-group-flush">
                           <ListGroup.Item><b>Status : </b> {detail.status} - {detail.species}</ListGroup.Item>
-                          <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                          <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+                          <ListGroup.Item><b>Gender : </b> {detail.gender}</ListGroup.Item>
                         </ListGroup>
+                        <Card.Body className='text-center'>
+                          <Link to={`/character/${detail.id}`}>View More</Link>
+                        </Card.Body>
                       </Card>
                     </Col>
                   )
