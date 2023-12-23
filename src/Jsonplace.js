@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { Container } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 
 function Jsonplace() {
@@ -85,8 +84,6 @@ function Jsonplace() {
                })
           }
      }
-
-
 
   return (
     

@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 function Product() {
 
      const [product,setproduct]=useState([]);
+     
      const [smallimg,setsmallimg]=useState([]);
      const [bigimg,setbigimg]=useState();
      const [thumb,setthumb]=useState(false)
