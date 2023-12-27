@@ -15,7 +15,6 @@ function Dummyjson() {
 
      const dispatch=useDispatch()
 
-    
 
      useEffect(()=>{
           axios.get(`https://dummyjson.com/products/categories`)
